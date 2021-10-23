@@ -8,7 +8,9 @@ import com.dictionary.lib.DictionaryAPI;
 import com.dictionary.lib.check.Check;
 import com.dictionary.lib.data.PlayerData;
 import com.dictionary.lib.event.impl.MoveEvent;
+import com.dictionary.lib.event.impl.TeleportEvent;
 import com.dictionary.lib.util.Loc;
+import javassist.bytecode.T;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -60,8 +62,27 @@ public class PacketListener implements Listener {
                     }
 
                     MoveEvent event = new MoveEvent(to, from, e.getPacket().getBooleans().read(0));
+                    data.getTeleportProcessor().onMove(event);
                     for (Check check: data.getChecks())
                         check.onMove(event);
+                }
+            }
+        });
+
+        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin,
+                PacketType.Play.Server.POSITION
+        ) {
+            @Override
+            public void onPacketSending(PacketEvent e) {
+                if (e.isPlayerTemporary())
+                    return;
+
+                PlayerData data = dictionary.getPlayerDataManager().get(e.getPlayer());
+                PacketType type = e.getPacketType();
+
+                if (type == PacketType.Play.Server.POSITION) {
+                    TeleportEvent event = new TeleportEvent(new Loc(e.getPacket().getDoubles().read(0), e.getPacket().getDoubles().read(1), e.getPacket().getDoubles().read(2), e.getPacket().getFloat().read(0), e.getPacket().getFloat().read(1)));
+                    data.getTeleportProcessor().onTeleport(event);
                 }
             }
         });

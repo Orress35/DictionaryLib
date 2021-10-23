@@ -2,6 +2,8 @@ package com.dictionary.lib.data;
 
 import com.dictionary.lib.DictionaryAPI;
 import com.dictionary.lib.check.Check;
+import com.dictionary.lib.data.exempt.ExemptData;
+import com.dictionary.lib.data.processor.TeleportProcessor;
 import com.dictionary.lib.util.Loc;
 import org.bukkit.entity.Player;
 
@@ -14,6 +16,10 @@ public class PlayerData {
     private final List<Check> checks = new ArrayList<>();
 
     private final Loc location = new Loc(0,0,0,0,0), lastLocation = new Loc(0,0,0,0,0);
+
+    private final ExemptData exemptData = new ExemptData();
+
+    private final TeleportProcessor teleportProcessor = new TeleportProcessor(exemptData);
 
     public PlayerData(Player player, DictionaryAPI dictionary) {
         this.player = player;
@@ -45,5 +51,13 @@ public class PlayerData {
 
     public Loc getLastLocation() {
         return lastLocation;
+    }
+
+    public ExemptData getExemptData() {
+        return exemptData;
+    }
+
+    public TeleportProcessor getTeleportProcessor() {
+        return teleportProcessor;
     }
 }

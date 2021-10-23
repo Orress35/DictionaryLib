@@ -1,7 +1,9 @@
 package com.dictionary;
 
 import com.dictionary.lib.DictionaryAPI;
-import com.dictionary.lib.check.impl.StepA;
+import com.dictionary.lib.check.impl.fly.FlyAccel;
+import com.dictionary.lib.check.impl.fly.FlyStable;
+import com.dictionary.lib.check.impl.step.StepHeight;
 import com.dictionary.lib.event.CheatEventListener;
 import com.dictionary.lib.event.impl.CheatEvent;
 import org.bukkit.Bukkit;
@@ -17,7 +19,9 @@ public class DictionaryAC extends JavaPlugin implements CheatEventListener {
         dictionary.start();
 
         dictionary.setChecks(
-                StepA.class
+                FlyAccel.class,
+                FlyStable.class,
+                StepHeight.class
         );
 
         dictionary.addListener(this);

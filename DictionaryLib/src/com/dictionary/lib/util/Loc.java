@@ -74,4 +74,11 @@ public class Loc {
     public Loc copy() {
         return new Loc(x, y, z, yaw, pitch);
     }
+
+    public double distance(Loc other) {
+        double deltaX = x - other.x;
+        double deltaY = y - other.y;
+        double deltaZ = z - other.z;
+        return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+    }
 }
