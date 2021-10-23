@@ -3,6 +3,8 @@ package com.dictionary;
 import com.dictionary.lib.DictionaryAPI;
 import com.dictionary.lib.check.impl.fly.FlyAccel;
 import com.dictionary.lib.check.impl.fly.FlyStable;
+import com.dictionary.lib.check.impl.speed.SpeedFriction;
+import com.dictionary.lib.check.impl.speed.SpeedLimit;
 import com.dictionary.lib.check.impl.step.StepHeight;
 import com.dictionary.lib.event.CheatEventListener;
 import com.dictionary.lib.event.impl.CheatEvent;
@@ -21,6 +23,8 @@ public class DictionaryAC extends JavaPlugin implements CheatEventListener {
         dictionary.setChecks(
                 FlyAccel.class,
                 FlyStable.class,
+                SpeedFriction.class,
+                SpeedLimit.class,
                 StepHeight.class
         );
 

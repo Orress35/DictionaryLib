@@ -13,7 +13,7 @@ public class FlyAccel extends Check {
     }
 
     double deltaY, lastDeltaY;
-    int airTicks = 0;
+    int airTicks;
 
     @Override
     public void onMove(MoveEvent e) {
@@ -24,7 +24,7 @@ public class FlyAccel extends Check {
 
         double accelY = deltaY - lastDeltaY;
 
-        if (accelY >= 0 && airTicks > 2)
+        if (accelY >= 0 && airTicks > 2 && !data.getExemptData().get(ExemptType.TELEPORT))
             fail("accelY=" + accelY);
     }
 }

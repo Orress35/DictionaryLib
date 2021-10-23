@@ -12,7 +12,7 @@ public class FlyStable extends Check {
     }
 
     double deltaY, lastDeltaY, lastLastDeltaY;
-    int airTicks = 0;
+    int airTicks;
 
     @Override
     public void onMove(MoveEvent e) {
