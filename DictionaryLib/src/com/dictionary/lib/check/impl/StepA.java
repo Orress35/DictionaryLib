@@ -15,7 +15,7 @@ public class StepA extends Check {
     public void onMove(MoveEvent e) {
         double deltaY = e.getTo().getY() - e.getFrom().getY();
 
-        if (deltaY > 0.6 && !e.isOnGround())
+        if (deltaY > 0.6 && e.isOnGround())
             fail("deltaY=" + deltaY);
     }
 }
