@@ -1,2 +1,2 @@
 # DictionaryLib
-An anticheat library with every (decent) check possible
+An anticheat library with every check possible
